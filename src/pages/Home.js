@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { getReviews } from "../utils/API";
-import {Box, Card, Stack, Typography} from '@mui/material'
+import {Stack} from '@mui/material'
 import Review from "../components/ReviewCard";
 const Home = () => {
   const [reviews, setReviews] = useState([])
@@ -27,7 +27,7 @@ const Home = () => {
         gap: '47px'
       }}>
      {reviews.map((review) => { 
-      return (<Review data={review} />)
+      return (<Review data={review} key={review.review_id}/>)
       })}
       
     </Stack>

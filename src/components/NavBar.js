@@ -73,7 +73,7 @@ const NavBar = () => {
           }}
         >
             {catList.map(item => {
-                return (<MenuItem onClick={handleClose}>{item}</MenuItem>)
+                return (<MenuItem onClick={handleClose} key={item}>{item}</MenuItem>)
             })}
           
         </Menu>
