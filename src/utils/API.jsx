@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const url = axios.create({ baseURL: 'https://felix-boardgame-server.cyclic.app/api/' })
 // 
-export const getReviews = (sort_by = 'created_at', order_by = 'DESC') => {
-    return url.get(`reviews?sort_by=${sort_by}&order_by=${order_by}`).then((res) => {return res.data.reviews})
+export const getReviews = (sort_by = 'created_at', order_by = 'DESC', slug = '') => {
+    return url.get(`reviews?sort_by=${sort_by}&order_by=${order_by}&slug=${slug}`).then((res) => {return res.data.reviews})
 }
 export const getCategories = () => {
     return url.get('categories').then((res) => {return res.data})

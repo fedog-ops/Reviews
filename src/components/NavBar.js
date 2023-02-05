@@ -6,24 +6,26 @@ import { useState } from "react";
 
 import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const NavBar = () => {
+const NavBar = ({ callback }) => {
   const catList = [
-    "all",
-    "strategy",
-    "hidden-roles",
-    "dexterity",
-    "push-your-luck",
-    "roll-and-write",
-    "deck-building",
-    "engine-building",
+    { i: '', o: "All" },
+    { i: "strategy", o: "Strategy" },
+    { i: "hidden-roles", o: "Hidden roles" },
+    { i: "dexterity", o: "Dexterity" },
+    { i: "push-your-luck", o: "Push your luck" },
+    { i: "roll-and-write", o: "Roll and write" },
+    { i: "deck-building", o: "Deck  building" },
+    { i: "engine-building", o: "Engine building" },
   ];
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (e) => {
     setAnchorEl(e.target);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
+    const { myValue } = e.currentTarget.dataset;
+    callback(myValue);
   };
   return (
     <Toolbar>
@@ -72,10 +74,13 @@ const NavBar = () => {
             horizontal: "right",
           }}
         >
-            {catList.map(item => {
-                return (<MenuItem onClick={handleClose}>{item}</MenuItem>)
-            })}
-          
+          {catList.map((item) => {
+            return (
+              <MenuItem data-my-value={item.i} onClick={handleClose}  key={item.i}>
+                {item.o}
+              </MenuItem>
+            );
+          })}
         </Menu>
         <Button>Users</Button>
       </Stack>
