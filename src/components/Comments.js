@@ -1,41 +1,72 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { getComments } from '../utils/API'
-import { Card } from '@mui/material'
-import CommentCard from './CommentCard'
-import { Button, Form, } from 'semantic-ui-react'
-const Comments = ({review}) => {
-const [comments, setComments] = useState([])
-const [cache, setCache] = useState([])
-useEffect(() => {
-  console.log('cache:', cache)
-if (cache.length === 0) {
-    getComments(review.review_id).then((data)=>{
-           
-            setComments(data)
-            console.log(data)
-    }).catch((error) => {
-        console.log(error)
-    })
-  }
+import { View, Text } from "react-native";
+import React from "react";
+import { useEffect, useState, useContext } from "react";
+import { getComments, addComment } from "../utils/API";
+import {UserContext} from "../context/UserContext"
+import CommentCard from "./CommentCard";
+import { TextField, Button } from "@mui/material";
+
+import Error from "../components/Error"
+
+const Comments = ({ review }) => {
+   const {userLoggedIn, setUserLoggedIn} = useContext(UserContext);
+   const [comments, setComments] = useState([]);
+   const [newComment, setNewComment] = useState('');
+
+  const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
+  
+  const [err, setErr] = useState(null);
+
  
-}, [])
 
-    return (
-        <div>
-    <View>
-        <Text paragraph>Comments:</Text>
-      {comments.map((comment, i) =>{
-        return(<CommentCard key={comment.comment_id} data={comment}/>)
-      })}
-    </View>
-     <Form reply>
-     <Form.TextArea />
-     <Button content='Add Reply' labelPosition='left' icon='edit' primary />
-   </Form>
-   </div>
-  )
+  useEffect(() => {
+    console.log('comments useEffect')
+    getComments(review.review_id)
+      .then((data) => {
+        setComments(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },[]);
+const handlePostComment = (event) => {
+  event.preventDefault();
+    console.log(newComment)
+    if(newComment !== '' && userLoggedIn){
+    addComment(review.review_id, userLoggedIn, newComment)
+      .then((data) => {
+        setIsCommentSubmitted(true)
+       setNewComment('')
+        ;})
+      .catch(
+        ({response: {data: { msg },status}}) => {
+          setIsCommentSubmitted(false)
+          setErr({ msg, status });
+        }
+      );}
 }
+  return (
+    <div>
+      <div> {err ? <Error err={err} /> : '' } </div>
+        <TextField id="outlined-basic" label="Comment" variant="outlined" 
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        />
+        <Button onClick={handlePostComment} variant="contained" >Enter</Button>  
+      <View>
+        <Text paragraph>Comments:</Text>
+        {isCommentSubmitted ? <CommentCard key={'temp'} data={{author: userLoggedIn, body : 'Sent', created_at: "Just now", votes: 0}}/> : null} 
+        {comments.map((comment, i) => {
+          return <CommentCard key={comment.comment_id} data={comment} />;
+        })}
+      </View> 
+      
+      
+      
+    </div>
+  );
+};
 
-export default Comments
+export default Comments;
+
+

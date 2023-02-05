@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -8,20 +7,19 @@ import {
   CardMedia,
   CardActions,
   CardContent,
-
+  Collapse,
   Avatar,
   IconButton,
-
+  Typography,
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-
-import ForumIcon from '@mui/icons-material/Forum';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Text } from "react-native";
-
+import Comments from "./Comments";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,15 +33,13 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ReviewCard({ data, currentUser }) {
+export default function ExtReviewCard({ data }) {
   const [expanded, setExpanded] = React.useState(false);
-  const [text, setText] = useState(data.review_body.slice(0, 125));
-  const [readMore, setReadMore] = useState(false);
+  // const [text, setText] = useState(data.review_body.slice(0, 125));
+  // const [readMore, setReadMore] = useState(false);
 
-  const handleExtraInfoClick = () => {
-    setExpanded(!expanded)
-
-
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
   return (
@@ -73,17 +69,9 @@ export default function ReviewCard({ data, currentUser }) {
         <Text
           variant="body2"
           color="text.secondary"
-          onPress={() => {
-            if (!readMore) {
-              setText(data.review_body);
-              setReadMore(true);
-            } else {
-              setText(data.review_body.slice(0, 125));
-              setReadMore(false);
-            }
-          }}
+         
         >
-          {text} {!readMore && "..."}
+          {data.review_body}
           <Text variant="body2" color="text.secondary">
             {readMore ? "Show Less" : "Read More"}
           </Text>
@@ -99,15 +87,19 @@ export default function ReviewCard({ data, currentUser }) {
 
         <ExpandMore
           expand={expanded}
-         
+          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        ><Link to={`/reviews/${data.review_id}`} query={currentUser}>
-          <ForumIcon  onClick={handleExtraInfoClick}/>
-          </Link>
+        >
+          <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Add Comment ...</Typography>
+          <Comments review={data}/>
+        </CardContent>
+      </Collapse> 
      </Card>
   );
 }
