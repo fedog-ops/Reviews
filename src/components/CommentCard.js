@@ -2,7 +2,7 @@ import React from 'react'
 import { Comment } from 'semantic-ui-react'
 import { Avatar } from '@mui/material'
 import { red } from "@mui/material/colors";
-import { getUsers } from '../utils/API'
+
 const CommentCard = ({data}) => {
 
     return (

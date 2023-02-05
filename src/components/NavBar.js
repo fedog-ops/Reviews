@@ -8,7 +8,7 @@ import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const NavBar = ({ callback }) => {
   const catList = [
-    { i: '', o: "All" },
+    { i: "", o: "All" },
     { i: "strategy", o: "Strategy" },
     { i: "hidden-roles", o: "Hidden roles" },
     { i: "dexterity", o: "Dexterity" },
@@ -25,8 +25,12 @@ const NavBar = ({ callback }) => {
   const handleClose = (e) => {
     setAnchorEl(null);
     const { myValue } = e.currentTarget.dataset;
-    callback(myValue);
+    if (myValue) {
+      callback(myValue);
+      ///reset page to home without link
+    }
   };
+  const handleUser = () => {};
   return (
     <Toolbar>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -76,13 +80,19 @@ const NavBar = ({ callback }) => {
         >
           {catList.map((item) => {
             return (
-              <MenuItem data-my-value={item.i} onClick={handleClose}  key={item.i}>
+              <MenuItem
+                data-my-value={item.i}
+                onClick={handleClose}
+                key={item.i}
+              >
                 {item.o}
               </MenuItem>
             );
           })}
         </Menu>
-        <Button>Users</Button>
+        <Link to="login">
+          <Button onClick={handleUser}>Users</Button>
+        </Link>
       </Stack>
     </Toolbar>
   );
