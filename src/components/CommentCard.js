@@ -4,7 +4,7 @@ import { Avatar } from '@mui/material'
 import { red } from "@mui/material/colors";
 
 const CommentCard = ({data}) => {
-
+  console.log('commentsCard component')
     return (
   <Comment.Group>
    

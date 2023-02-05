@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -8,12 +8,11 @@ import {
   CardActions,
   CardContent,
   Collapse,
-  Avatar,
+
   IconButton,
   Typography,
 } from "@mui/material";
 
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

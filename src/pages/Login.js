@@ -1,38 +1,40 @@
-import { View, Text } from 'react-native'
 import {Grid, Box }from '@mui/material';
 import React from 'react'
 import {useState, useEffect} from 'react'
 import { getUsers } from '../utils/API';
 import UserCard from '../components/UserCard';
-import { useNavigate } from 'react-router-dom';
+import Error from '../components/Error';
+
+//import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  let navigate = useNavigate();
+ // let navigate = useNavigate();
   const [users, setUsers] = useState([])
-  useEffect(()=>{
+  const [err, setErr] = useState(null)
+  useEffect(()=>{ 
       getUsers().then((data) => {
         setUsers(data);
-        console.log(data);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(({response: {data: { msg },status}}) => {
+        setErr({msg, status})
       })
   },[])
 
 const updateFN = (input) => {
-  navigate('/', {
-  state: {
-    currentUser: [input]
-  }
+//   navigate('/', {
+//   state: {
+//     currentUser: [input]
+//   }
   
- })
+//  })
 }
-
+if(err) return <Error err={err}/>
   return (
     <Box width={"400px"} sx={{width : {xl : '1488px'}} } m='auto'>
     <Grid container  alignItems="flex-end" rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
     >
         {users.map((user) => {
+          //xs ={4} can only be used with item prop
           return (
         <Grid xs={4}>
           <UserCard data={user} updateFN={updateFN}/>

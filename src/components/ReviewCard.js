@@ -8,20 +8,20 @@ import {
   CardMedia,
   CardActions,
   CardContent,
-  Collapse,
+
   Avatar,
   IconButton,
-  Typography,
+
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import ForumIcon from '@mui/icons-material/Forum';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Text } from "react-native";
-import Comments from "./Comments";
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -102,7 +102,7 @@ export default function ReviewCard({ data, currentUser }) {
          
           aria-expanded={expanded}
           aria-label="show more"
-        ><Link to={`/reviews/${data.review_id}`}>
+        ><Link to={`/reviews/${data.review_id}`} query={currentUser}>
           <ForumIcon  onClick={handleExtraInfoClick}/>
           </Link>
         </ExpandMore>
