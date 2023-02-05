@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -33,9 +33,18 @@ const ExpandMore = styled((props) => {
 }))
 
 const TestCard = ({data}) => {
-    const [expanded, setExpanded] = React.useState(false);
-    // const [text, setText] = useState(data.review_body.slice(0, 125));
-    // const [readMore, setReadMore] = useState(false);
+  // const [likeCount, setLikeCount] = useState('')
+  // useEffect = () => {
+  //    setLikeCount(parseInt(data.votes))
+  // }
+ 
+ const [expanded, setExpanded] = useState(false);
+   
+    
+    const handleLikes = () => {
+        console.log('hello')
+        // setLikeCount(x=> x + 1)
+    }
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
@@ -71,11 +80,11 @@ const TestCard = ({data}) => {
           </Text>
         </CardContent>
        <CardActions disableSpacing>
-          <IconButton aria-label="like">
-            <FavoriteIcon />
+          <IconButton onClick={handleLikes} aria-label="like" >
+            <FavoriteIcon /><div>{data.votes}</div>
           </IconButton>
           <IconButton aria-label="share">
-            <ShareIcon />
+            <ShareIcon /><div>{data.comment_count}</div>
           </IconButton>
   
           <ExpandMore
@@ -93,6 +102,7 @@ const TestCard = ({data}) => {
             <Comments review={data}/>
           </CardContent>
         </Collapse> 
+        
        </Card>
     );
 }

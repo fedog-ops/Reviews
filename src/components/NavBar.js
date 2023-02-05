@@ -1,12 +1,15 @@
 import React from "react";
 import { Button, Typography, Menu, MenuItem, Toolbar } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { SignalCellularNull } from "@mui/icons-material";
 
 const NavBar = ({ callback }) => {
+  const navigate =useNavigate()
   const catList = [
     { i: "", o: "All" },
     { i: "strategy", o: "Strategy" },
@@ -25,8 +28,9 @@ const NavBar = ({ callback }) => {
   const handleClose = (e) => {
     setAnchorEl(null);
     const { myValue } = e.currentTarget.dataset;
-    if (myValue) {
+    if (myValue !== null) {
       callback(myValue);
+      navigate('/')
       ///reset page to home without link
     }
   };
@@ -78,12 +82,12 @@ const NavBar = ({ callback }) => {
             horizontal: "right",
           }}
         >
-          {catList.map((item) => {
+          {catList.map((item, i) => {
             return (
               <MenuItem
                 data-my-value={item.i}
                 onClick={handleClose}
-                key={item.i}
+                key={i}
               >
                 {item.o}
               </MenuItem>

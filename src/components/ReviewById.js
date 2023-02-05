@@ -16,13 +16,13 @@ const ReviewById = () => {
       console.log('reviewsByID useEffect')
             getReviewById(review_id)
             .then((data) => {
-                setReview(data)                
+                setReview(data)   
+                console.log(data)             
             }).catch((error) =>console.log(error))
         },[])
    
   return (
     <View>
-      <Text>hello</Text>
       <TestCard data={review}/>
     </View>
   )

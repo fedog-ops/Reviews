@@ -12,6 +12,7 @@ import ReviewById from "./components/ReviewById";
 
 function App() {
   const [slug, setSlug] = useState("");
+  const [userLoggedIn, setUserLoggedIn] = useState('grumpy19')
   const callbackFn = (data) => {
     setSlug(`${data}`);
   };
@@ -19,7 +20,7 @@ function App() {
   return (
     <Box width={"400px"} sx={{ width: { xl: "1488px" } }} m="auto">
       <Typography>{slug}</Typography>
-      <UserContext.Provider value='grumpy19'>
+      <UserContext.Provider value={{userLoggedIn, setUserLoggedIn}}>
         <NavBar callback={callbackFn} />
         <Routes>
           <Route path="/" element={<Home slug={slug} />} />

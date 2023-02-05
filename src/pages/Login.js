@@ -1,16 +1,17 @@
 import {Grid, Box }from '@mui/material';
 import React from 'react'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import { getUsers } from '../utils/API';
 import UserCard from '../components/UserCard';
 import Error from '../components/Error';
-
-//import { useNavigate } from 'react-router-dom';
+import {UserContext }from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
- // let navigate = useNavigate();
+let navigate = useNavigate();
   const [users, setUsers] = useState([])
   const [err, setErr] = useState(null)
+  const {setUserLoggedIn} = useContext(UserContext);
   useEffect(()=>{ 
       getUsers().then((data) => {
         setUsers(data);
@@ -21,12 +22,9 @@ const Login = () => {
   },[])
 
 const updateFN = (input) => {
-//   navigate('/', {
-//   state: {
-//     currentUser: [input]
-//   }
-  
-//  })
+  setUserLoggedIn(input)
+  navigate('/')
+
 }
 if(err) return <Error err={err}/>
   return (

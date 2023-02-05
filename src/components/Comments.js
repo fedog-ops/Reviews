@@ -9,9 +9,9 @@ import { TextField, Button } from "@mui/material";
 import Error from "../components/Error"
 
 const Comments = ({ review }) => {
-   const user = useContext(UserContext);
+   const {userLoggedIn, setUserLoggedIn} = useContext(UserContext);
    const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+   const [newComment, setNewComment] = useState('');
 
   const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
   
@@ -32,14 +32,11 @@ const Comments = ({ review }) => {
 const handlePostComment = (event) => {
   event.preventDefault();
     console.log(newComment)
-    if(newComment !== '' && user){
-    addComment(review.review_id, user, newComment)
+    if(newComment !== '' && userLoggedIn){
+    addComment(review.review_id, userLoggedIn, newComment)
       .then((data) => {
         setIsCommentSubmitted(true)
-        // const sentTime = setTimeout(() => {
-        //   setIsCommentSubmitted(false)
-        //   setNewComment('')
-        // }, 1000)
+       setNewComment('')
         ;})
       .catch(
         ({response: {data: { msg },status}}) => {
@@ -58,7 +55,7 @@ const handlePostComment = (event) => {
         <Button onClick={handlePostComment} variant="contained" >Enter</Button>  
       <View>
         <Text paragraph>Comments:</Text>
-        {isCommentSubmitted ? <CommentCard key={'temp'} data={{author: user, body : newComment, created_at: "Just now", votes: 0}}/> : null} 
+        {isCommentSubmitted ? <CommentCard key={'temp'} data={{author: userLoggedIn, body : 'Sent', created_at: "Just now", votes: 0}}/> : null} 
         {comments.map((comment, i) => {
           return <CommentCard key={comment.comment_id} data={comment} />;
         })}
