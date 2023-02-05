@@ -46,7 +46,7 @@ export default function ReviewCard({ data }) {
     <Card sx={{ maxWidth: 1500 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="review">
             {data.owner.slice(0, 2)}
           </Avatar>
         }
@@ -65,7 +65,7 @@ export default function ReviewCard({ data }) {
         alt="Paella dish"
       />
       <CardContent>
-        {/* review body */}
+        <Text>{data.category}</Text><br/>
         <Text
           variant="body2"
           color="text.secondary"
@@ -85,7 +85,7 @@ export default function ReviewCard({ data }) {
           </Text>
         </Text>
       </CardContent>
-      <CardActions disableSpacing>
+     <CardActions disableSpacing>
         <IconButton aria-label="like">
           <FavoriteIcon />
         </IconButton>
@@ -105,9 +105,9 @@ export default function ReviewCard({ data }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Add Comment ...</Typography>
-          <Comments/>
+          <Comments review={data}/>
         </CardContent>
-      </Collapse>
+      </Collapse> 
     </Card>
   );
 }
