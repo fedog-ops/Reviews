@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { getReviews } from "../utils/API";
 import { Stack, Typography } from "@mui/material";
 import ReviewCard from "../components/ReviewCard";
@@ -7,10 +8,14 @@ const Home = ({ slug }) => {
   const [reviews, setReviews] = useState([]);
   const [sort_by, setSort_by] = useState("created_at");
   const [order_by, setOrder_by] = useState("DESC");
+  const [currentUser, setCurrentUser] = useState('')
+  const location = useLocation();
+ 
   useEffect(() => {
     getReviews(sort_by, order_by, slug)
       .then((data) => {
-        setReviews(data);
+        setReviews(data); 
+        if(location.state.currentUser[0]) setCurrentUser(location.state.currentUser[0])
       })
       .catch((error) => {
         console.log(error);
@@ -28,8 +33,9 @@ const Home = ({ slug }) => {
         gap: "47px",
       }}
     >
-    
-      <Stack  direction="row"
+     <h4>{currentUser}</h4>
+  
+  <Stack  direction="row"
         justifyContent="space-around"
         spacing={2}
         sx={{
@@ -68,7 +74,7 @@ const Home = ({ slug }) => {
       </label>
 </Stack>
       {reviews.map((review) => {
-        return <ReviewCard data={review} key={review.review_id} />;
+        return <ReviewCard data={review} key={review.review_id} currentUser={currentUser}/>;
       })}
     </Stack>
   );

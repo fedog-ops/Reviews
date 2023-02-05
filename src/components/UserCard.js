@@ -5,18 +5,24 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function UserCard({data}) {
+export default function UserCard({data, updateFN}) {
+    const handleClick = () => {
+        updateFN(data.username)
+    }
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 350 }}>
+      <CardActionArea
+      onClick={handleClick}
+      >
         <CardMedia
           component="img"
           height="100"
          image={data.avatar_url}
-          alt="green iguana"
+          alt={data}
+        
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h9" component="div">
             {data.username}
           </Typography>
           

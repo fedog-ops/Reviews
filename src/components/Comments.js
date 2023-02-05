@@ -17,7 +17,7 @@ const Comments = ({ review }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [review.review_id]);
+  }, []);
 
   return (
     <div>

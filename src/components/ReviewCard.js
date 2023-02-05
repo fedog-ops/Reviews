@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ReviewCard({ data }) {
+export default function ReviewCard({ data, currentUser }) {
   const [expanded, setExpanded] = React.useState(false);
   const [text, setText] = useState(data.review_body.slice(0, 125));
   const [readMore, setReadMore] = useState(false);

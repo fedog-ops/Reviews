@@ -13,9 +13,7 @@ function App() {
   const callbackFn = (data) => {
       setSlug(`${data}`);
   }
-  const callbackRoute = () => {
-      console.log('hello')
-  }
+ 
   return (
    <Box width={"400px"} sx={{width : {xl : '1488px'}} } m='auto'>
     <Typography>{slug}</Typography>
