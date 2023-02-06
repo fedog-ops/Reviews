@@ -90,12 +90,12 @@ export default function ReviewCard({ data, currentUser }) {
         </Text>
       </CardContent>
      <CardActions disableSpacing>
-        <IconButton aria-label="like">
+        {/* <IconButton aria-label="like">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
-        </IconButton>
+        </IconButton> */}
 
         <ExpandMore
           expand={expanded}

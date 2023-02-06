@@ -28,7 +28,7 @@ const NavBar = ({ callback }) => {
   const handleClose = (e) => {
     setAnchorEl(null);
     const { myValue } = e.currentTarget.dataset;
-    if (myValue !== null) {
+    if (myValue !== undefined) {
       callback(myValue);
       navigate('/')
       ///reset page to home without link

@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { getComments, addComment } from "../utils/API";
+import { getComments, addComment, deleteCommentById } from "../utils/API";
 import {UserContext} from "../context/UserContext"
 import CommentCard from "./CommentCard";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Stack, Box } from "@mui/material";
 
 import Error from "../components/Error"
 
@@ -12,26 +12,21 @@ const Comments = ({ review }) => {
    const {userLoggedIn, setUserLoggedIn} = useContext(UserContext);
    const [comments, setComments] = useState([]);
    const [newComment, setNewComment] = useState('');
-
-  const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
-  
-  const [err, setErr] = useState(null);
-
- 
+   const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
+   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    console.log('comments useEffect')
     getComments(review.review_id)
       .then((data) => {
         setComments(data);
-      })
+     })
       .catch((error) => {
         console.log(error);
       });
   },[]);
+
 const handlePostComment = (event) => {
   event.preventDefault();
-    console.log(newComment)
     if(newComment !== '' && userLoggedIn){
     addComment(review.review_id, userLoggedIn, newComment)
       .then((data) => {
@@ -45,25 +40,36 @@ const handlePostComment = (event) => {
         }
       );}
 }
+const handleDeleteComment = (comment_id) => {
+  deleteCommentById(comment_id).then(() => {console.log('deleted')}).catch(({response: {data: { msg },status}}) => {
+    setIsCommentSubmitted(false)
+    setErr({ msg, status });
+  })
+}
   return (
-    <div>
+    <Box>
       <div> {err ? <Error err={err} /> : '' } </div>
+      <Stack>
         <TextField id="outlined-basic" label="Comment" variant="outlined" 
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
         />
+        </Stack>
         <Button onClick={handlePostComment} variant="contained" >Enter</Button>  
+        
       <View>
         <Text paragraph>Comments:</Text>
         {isCommentSubmitted ? <CommentCard key={'temp'} data={{author: userLoggedIn, body : 'Sent', created_at: "Just now", votes: 0}}/> : null} 
         {comments.map((comment, i) => {
-          return <CommentCard key={comment.comment_id} data={comment} />;
+          return <CommentCard 
+          key={comment.comment_id} 
+          data={comment} 
+          canDelete={comment.author === userLoggedIn} 
+          handleDeleteComment={handleDeleteComment}/>;
         })}
       </View> 
       
-      
-      
-    </div>
+    </Box>
   );
 };
 

@@ -8,7 +8,7 @@ import {
   CardActions,
   CardContent,
   Collapse,
-
+  Stack,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -69,23 +69,23 @@ const TestCard = ({data}) => {
           alt="Paella dish"
         />
         <CardContent>
-          <Text>{data.category}</Text><br/>
-          <Text
+          <Typography>{data.category}</Typography><br/>
+          <Typography
             variant="body2"
             color="text.secondary"
-           
-          >
+           >
             {data.review_body}
             
-          </Text>
+          </Typography>
         </CardContent>
+        
        <CardActions disableSpacing>
-          <IconButton onClick={handleLikes} aria-label="like" >
+          {/* <IconButton onClick={handleLikes} aria-label="like" >
             <FavoriteIcon /><div>{data.votes}</div>
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon /><div>{data.comment_count}</div>
-          </IconButton>
+          </IconButton> */}
   
           <ExpandMore
             expand={expanded}
@@ -93,12 +93,14 @@ const TestCard = ({data}) => {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <ExpandMoreIcon />
+            <Stack direction="row">
+            <Typography >Comments</Typography>
+            <ExpandMoreIcon /></Stack>
           </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Add Comment ...</Typography>
+            
             <Comments review={data}/>
           </CardContent>
         </Collapse> 
