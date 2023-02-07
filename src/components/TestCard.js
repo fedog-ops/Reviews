@@ -51,7 +51,7 @@ const TestCard = ({data}) => {
     };
   
     return (
-      <Card sx={{ maxWidth: 1500 }}>
+      <Card >
         <CardHeader
          
           action={

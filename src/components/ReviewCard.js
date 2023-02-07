@@ -46,13 +46,9 @@ export default function ReviewCard({ data, currentUser }) {
             {data.owner.slice(0, 2)}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        sx={{height: 50}}
         title={data.title}
-        subheader={data.created_at}
+        subheader={data.created_at.slice(0,10)}
       />
       <CardMedia
         component="img"
@@ -75,9 +71,9 @@ export default function ReviewCard({ data, currentUser }) {
             }
           }}
         >
-          {text} {!readMore && "..."}
-          <Text variant="body2" color="text.secondary">
-            {readMore ? "Show Less" : "Read More"}
+          {text} {!readMore && "... "}
+          <Text variant="body4" color="text.secondary">
+            {(readMore) ? "Show Less" : "  read more"}
           </Text>
         </Text>
       </CardContent>

@@ -19,7 +19,6 @@ function App() {
 
   return (
    <div>
-      <Typography>{slug}</Typography>
       <UserContext.Provider value={{userLoggedIn, setUserLoggedIn}}>
         <NavBar callback={callbackFn} />
         <Routes>
