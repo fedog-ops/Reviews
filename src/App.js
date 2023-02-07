@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import {Typography } from "@mui/material";
 
 import { UserContext } from "./context/UserContext";
 
@@ -18,7 +18,7 @@ function App() {
   };
 
   return (
-    <Box width={"400px"} sx={{ width: { xl: "1488px" } }} m="auto">
+   <div>
       <Typography>{slug}</Typography>
       <UserContext.Provider value={{userLoggedIn, setUserLoggedIn}}>
         <NavBar callback={callbackFn} />
@@ -28,7 +28,7 @@ function App() {
           <Route path="/reviews/:review_id" element={<ReviewById />} />
         </Routes>
       </UserContext.Provider>
-    </Box>
+    </div>
   );
 }
 

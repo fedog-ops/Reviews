@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { getReviews } from "../utils/API";
-import { Stack, Typography } from "@mui/material";
-import ReviewCard from "../components/ReviewCard";
+import { Stack, Typography, Grid } from "@mui/material"
+import ReviewCard from "../components/ReviewCard"
+
+
 const Home = ({ slug }) => {
   const [reviews, setReviews] = useState([]);
   const [sort_by, setSort_by] = useState("created_at");
@@ -11,26 +13,42 @@ const Home = ({ slug }) => {
   useEffect(() => {
     getReviews(sort_by, order_by, slug)
       .then((data) => {
-        setReviews(data); 
-       })
+        setReviews(data);
+      })
       .catch((error) => {
         console.log(error);
         setReviews(null);
       });
   }, [slug, order_by, sort_by]);
   if (!reviews) return <Typography>Loading...</Typography>;
-  return (
-    <Stack
-      sx={{
-        backgroundColor: "#fff",
-        borderBottomLeftRadius: "20px",
 
-        cursor: "pointer",
-        gap: "47px",
-      }}
-    >
-    
-  <Stack  direction="row"
+  return (
+    <Grid container>
+      {reviews.map((review) => {
+        return (<Grid xs={12} sm={6} md={4}>
+          <ReviewCard data={review} key={review.review_id} />
+        </Grid>)
+      })}
+    </Grid>
+  );
+};
+
+export default Home;
+// id={review.review_id}
+// .catch(({response: {data: { msg },status}}) =>{
+//   setErr({msg, status})
+// })
+
+// sx={{
+//   backgroundColor: "#fff",
+//   borderBottomLeftRadius: "20px",
+
+//   cursor: "pointer",
+//   gap: "47px",
+// }}
+
+{
+  /* <Stack  direction="row"
         justifyContent="space-around"
         spacing={2}
         sx={{
@@ -67,16 +85,5 @@ const Home = ({ slug }) => {
           <option value="DESC"> DESC </option>
         </select>
       </label>
-</Stack>
-      {reviews.map((review) => {
-        return <ReviewCard data={review} key={review.review_id}/>;
-      })}
-    </Stack>
-  );
-};
-
-export default Home;
-// id={review.review_id}
-// .catch(({response: {data: { msg },status}}) =>{
-//   setErr({msg, status})
-// })
+</Stack> */
+}
