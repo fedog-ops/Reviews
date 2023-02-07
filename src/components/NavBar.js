@@ -3,10 +3,8 @@ import { Button, Typography, Menu, MenuItem, Toolbar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
 import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { SignalCellularNull } from "@mui/icons-material";
+
 
 const NavBar = ({ callback }) => {
   const navigate =useNavigate()

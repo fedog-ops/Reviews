@@ -28,9 +28,8 @@ const updateFN = (input) => {
 }
 if(err) return <Error err={err}/>
   return (
-    <Box width={"400px"} sx={{width : {xl : '1488px'}} } m='auto'>
-    <Grid container  alignItems="flex-end" rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-    >
+    
+    <Grid container>    
         {users.map((user) => {
           //xs ={4} can only be used with item prop
           return (
@@ -39,8 +38,12 @@ if(err) return <Error err={err}/>
         </Grid>)
         } )}
     </Grid>
-   </Box>
+
   )
 }
 
 export default Login
+
+//alignItems="flex-end" rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+
+{/* <Box  sx={{width : {xl : '1200px'}} } m='auto'> </Box> */}

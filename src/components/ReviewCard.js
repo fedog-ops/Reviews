@@ -15,8 +15,6 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 
 import ForumIcon from '@mui/icons-material/Forum';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -40,27 +38,17 @@ export default function ReviewCard({ data, currentUser }) {
   const [text, setText] = useState(data.review_body.slice(0, 125));
   const [readMore, setReadMore] = useState(false);
 
-  const handleExtraInfoClick = () => {
-    setExpanded(!expanded)
-
-
-  };
-
   return (
-    <Card sx={{ maxWidth: 1500 }}>
+    <Card>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="review">
             {data.owner.slice(0, 2)}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        sx={{height: 50}}
         title={data.title}
-        subheader={data.created_at}
+        subheader={data.created_at.slice(0,10)}
       />
       <CardMedia
         component="img"
@@ -83,19 +71,14 @@ export default function ReviewCard({ data, currentUser }) {
             }
           }}
         >
-          {text} {!readMore && "..."}
-          <Text variant="body2" color="text.secondary">
-            {readMore ? "Show Less" : "Read More"}
+          {text} {!readMore && "... "}
+          <Text variant="body4" color="text.secondary">
+            {(readMore) ? "Show Less" : "  read more"}
           </Text>
         </Text>
       </CardContent>
      <CardActions disableSpacing>
-        {/* <IconButton aria-label="like">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
+       
 
         <ExpandMore
           expand={expanded}
@@ -103,7 +86,7 @@ export default function ReviewCard({ data, currentUser }) {
           aria-expanded={expanded}
           aria-label="show more"
         ><Link to={`/reviews/${data.review_id}`} query={currentUser}>
-          <ForumIcon  onClick={handleExtraInfoClick}/>
+          <ForumIcon/>
           </Link>
         </ExpandMore>
       </CardActions>
@@ -111,3 +94,13 @@ export default function ReviewCard({ data, currentUser }) {
      </Card>
   );
 }
+
+
+
+
+ {/* <IconButton aria-label="like">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton> */}
