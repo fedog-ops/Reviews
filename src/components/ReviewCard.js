@@ -11,15 +11,15 @@ import {
 
   Avatar,
   IconButton,
+  Typography,
 
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
 
 import ForumIcon from '@mui/icons-material/Forum';
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Text } from "react-native";
-
+import "../DarkMode.css";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -39,14 +39,10 @@ export default function ReviewCard({ data, currentUser }) {
   const [readMore, setReadMore] = useState(false);
 
   return (
-    <Card>
+    <Card style={{backgroundColor:"#292929"}}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="review">
-            {data.owner.slice(0, 2)}
-          </Avatar>
-        }
-        sx={{height: 50}}
+       
+        sx={{height: 50, }}
         title={data.title}
         subheader={data.created_at.slice(0,10)}
       />
@@ -57,10 +53,10 @@ export default function ReviewCard({ data, currentUser }) {
         alt="Paella dish"
       />
       <CardContent>
-        <Text>{data.category}</Text><br/>
+        <Typography color="#eee">{data.category}</Typography><br/>
         <Text
           variant="body2"
-          color="text.secondary"
+          color="#eee"
           onPress={() => {
             if (!readMore) {
               setText(data.review_body);

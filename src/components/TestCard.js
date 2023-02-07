@@ -51,14 +51,9 @@ const TestCard = ({data}) => {
     };
   
     return (
-      <Card >
+      <Card style={{backgroundColor:"#292929"}}>
         <CardHeader
-         
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
+                  
           title={data.title}
           subheader={data.created_at}
         />
@@ -69,10 +64,10 @@ const TestCard = ({data}) => {
           alt="Paella dish"
         />
         <CardContent>
-          <Typography>{data.category}</Typography><br/>
+          <Typography color="#eeeeee">{data.category}</Typography><br/>
           <Typography
             variant="body2"
-            color="text.secondary"
+            color="#eeeeee"
            >
             {data.review_body}
             

@@ -10,7 +10,7 @@ export default function UserCard({data, updateFN}) {
         updateFN(data.username)
     }
   return (
-    <Card sx={{ maxWidth: 350 }}>
+    <Card sx={{ maxWidth: 350 , backgroundColor: "#272727" }}>
       <CardActionArea
       onClick={handleClick}
       >
@@ -22,7 +22,7 @@ export default function UserCard({data, updateFN}) {
         
         />
         <CardContent>
-          <Typography gutterBottom variant="h9" component="div">
+          <Typography gutterBottom variant="h9" component="div" color="#eee">
             {data.username}
           </Typography>
           

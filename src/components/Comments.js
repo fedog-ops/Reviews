@@ -18,7 +18,7 @@ const Comments = ({ review }) => {
   useEffect(() => {
     getComments(review.review_id)
       .then((data) => {
-        setComments(data);
+       setComments(data);
      })
       .catch((error) => {
         console.log(error);

@@ -1,4 +1,4 @@
-import {Grid, Box }from '@mui/material';
+import {Grid }from '@mui/material';
 import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import { getUsers } from '../utils/API';
@@ -26,14 +26,21 @@ const updateFN = (input) => {
   navigate('/')
 
 }
+const styling ={
+  container: {
+    paddingRight:5,
+    paddingLeft:5,
+    paddingTop:2
+  }
+}
 if(err) return <Error err={err}/>
   return (
     
-    <Grid container>    
+    <Grid container sx={styling.container} spacing={2}>    
         {users.map((user) => {
           //xs ={4} can only be used with item prop
           return (
-        <Grid xs={4}>
+        <Grid xs={4} sx={{paddingTop: 5, paddingLeft:5}}>
           <UserCard data={user} updateFN={updateFN}/>
         </Grid>)
         } )}
@@ -44,6 +51,3 @@ if(err) return <Error err={err}/>
 
 export default Login
 
-//alignItems="flex-end" rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-
-{/* <Box  sx={{width : {xl : '1200px'}} } m='auto'> </Box> */}

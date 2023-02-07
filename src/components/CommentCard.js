@@ -25,8 +25,8 @@ return (
         px="20px">
    
     <Box>
-      <Avatar sx={{ bgcolor: red[500], height:50, width: 50 }} aria-label="review">
-              {data.author.slice(0, 2)}
+      <Avatar sx={{ bgcolor: red[500], height:50, width: 50 }} aria-label="review" src={data.avatar_url}>
+              
       </Avatar>
     </Box>
       <Box sx={{ width: 3/4 }}>
