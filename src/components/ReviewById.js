@@ -16,8 +16,7 @@ const ReviewById = () => {
     getReviewById(review_id)
       .then((data) => {
         setReview(data);
-        console.log(data);
-      })
+       })
       .catch((error) => console.log(error));
   }, []);
 

@@ -18,7 +18,7 @@ function App() {
   };
 
   return (
-   <div>
+   <div >
       <UserContext.Provider value={{userLoggedIn, setUserLoggedIn}}>
         <NavBar callback={callbackFn} />
         <Routes>

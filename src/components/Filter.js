@@ -24,9 +24,7 @@ const [value, setValue] = useState(data[1][0])
           label="Age"
           onChange={handleChange}
         >
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
+       
           {data.map(item => {
            return (<MenuItem value={item[0]}>{item[1]}</MenuItem>)
           })} 

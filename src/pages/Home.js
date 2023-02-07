@@ -66,9 +66,6 @@ const Home = ({ slug }) => {
 };
 
 export default Home;
-// id={review.review_id}
-// .catch(({response: {data: { msg },status}}) =>{
-//   setErr({msg, status})
-// })
+
 
 
