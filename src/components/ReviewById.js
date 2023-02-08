@@ -2,10 +2,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-
-import TestCard from "./TestCard";
 import { getReviewById } from "../utils/API";
 import { Grid } from "@mui/material";
+import SoloReviewCard from "./SoloReviewCard";
 
 const ReviewById = () => {
   const { review_id } = useParams();
@@ -24,7 +23,7 @@ const ReviewById = () => {
     <Grid container justifyContent="center"
   alignItems="center">
       <Grid  spacing={1} md={8}  sm={8} xs={8} >
-        <TestCard data={review} />
+        <SoloReviewCard data={review} />
       </Grid>
     </Grid>
   );

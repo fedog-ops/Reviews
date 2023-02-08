@@ -12,7 +12,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import TweakText from "../utils/TweakText";
+import {TweakText} from "../utils/TweakText";
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -31,7 +31,7 @@ const ExpandMore = styled((props) => {
   }),
 }))
 
-const TestCard = ({data}) => {
+const SoloReviewCard = ({data}) => {
   // const [likeCount, setLikeCount] = useState('')
   // useEffect = () => {
   //    setLikeCount(parseInt(data.votes))
@@ -99,4 +99,4 @@ const TestCard = ({data}) => {
     );
 }
 
-export default TestCard
+export default SoloReviewCard

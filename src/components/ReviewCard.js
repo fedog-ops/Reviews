@@ -20,7 +20,7 @@ import { Text } from "react-native";
 //styles
 import "../DarkMode.css";
 //utils
-import TweakText from "../utils/TweakText";
+import {TweakText} from "../utils/TweakText";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
 
