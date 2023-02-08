@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import {Typography } from "@mui/material";
-
 import { UserContext } from "./context/UserContext";
-
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
