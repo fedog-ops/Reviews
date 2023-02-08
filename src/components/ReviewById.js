@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,13 +12,13 @@ const ReviewById = () => {
 
   const [review, setReview] = useState([]);
   useEffect(() => {
-    console.log("reviewsByID useEffect");
+
     getReviewById(review_id)
       .then((data) => {
         setReview(data);
        })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch();
+  }, [review_id]);
 
   return (
     <Grid container justifyContent="center"

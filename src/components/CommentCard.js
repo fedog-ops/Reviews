@@ -6,12 +6,18 @@ import {Box, Stack, IconButton} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 const CommentCard = ({data, canDelete, handleDeleteComment}) => {
-  const [commentDeleted, setCommentsDeleted] = useState(false)
+
+  const [removeTimerPassed, setRemoveTimerPassed] = useState(false)
   const handleDeleteClick = () => {
     handleDeleteComment(data.comment_id)
-    setCommentsDeleted(true)
+    removeComment()
+ 
   }
-if (commentDeleted) return (<Box sx={{width: 3/4}}><Typography>Deleted ... </Typography></Box>)
+  const removeComment = () => {
+    setInterval(() => setRemoveTimerPassed(true), 200)
+ 
+  }
+if (removeTimerPassed) return (<></>)
 return (
   <Box>
     <Stack direction="row"

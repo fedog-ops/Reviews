@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { getComments, addComment, deleteCommentById } from "../utils/API";
@@ -9,21 +9,22 @@ import { TextField, Button, Stack, Box } from "@mui/material";
 import Error from "../components/Error"
 
 const Comments = ({ review }) => {
-   const {userLoggedIn, setUserLoggedIn} = useContext(UserContext);
+   const {userLoggedIn} = useContext(UserContext);
    const [comments, setComments] = useState([]);
    const [newComment, setNewComment] = useState('');
    const [isCommentSubmitted, setIsCommentSubmitted] = useState(false);
    const [err, setErr] = useState(null);
 
   useEffect(() => {
+    setIsCommentSubmitted(false)
     getComments(review.review_id)
       .then((data) => {
        setComments(data);
      })
       .catch((error) => {
-        console.log(error);
+
       });
-  },[]);
+  },[review.review_id, isCommentSubmitted]);
 
 const handlePostComment = (event) => {
   event.preventDefault();
@@ -31,7 +32,8 @@ const handlePostComment = (event) => {
     addComment(review.review_id, userLoggedIn, newComment)
       .then((data) => {
         setIsCommentSubmitted(true)
-       setNewComment('')
+
+        setNewComment('')
         ;})
       .catch(
         ({response: {data: { msg },status}}) => {
@@ -46,20 +48,22 @@ const handleDeleteComment = (comment_id) => {
     setErr({ msg, status });
   })
 }
+
   return (
     <Box>
       <div> {err ? <Error err={err} /> : '' } </div>
-      <Stack>
-        <TextField id="outlined-basic" label="Comment" variant="outlined" 
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        />
-        </Stack>
-        <Button onClick={handlePostComment} variant="contained" >Enter</Button>  
+
+      <Stack directions="row">
+          <TextField id="outlined-basic" label="Comment" variant="outlined" 
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          />
         
+          <Button onClick={handlePostComment} variant="contained" >Enter</Button>  
+      </Stack>
+
       <View>
-        <Text paragraph>Comments:</Text>
-        {isCommentSubmitted ? <CommentCard key={'temp'} data={{author: userLoggedIn, body : 'Sent', created_at: "Just now", votes: 0}}/> : null} 
+
         {comments.map((comment, i) => {
           return <CommentCard 
           key={comment.comment_id} 
