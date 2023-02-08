@@ -4,7 +4,7 @@
     --font-color: #333;
     --background-color: #eee;
     --link-color: cornflowerblue;
-   
+    --card-color: #eee;
   }
   
   /* 2 */
@@ -12,8 +12,11 @@
     --font-color: #eee;
     --background-color: #333;
     --link-color: peachpuff;
-
+    --card-color: #272727;
   }
+
+  /* 5 */
+
   
   /* 3 */
   body {
@@ -24,7 +27,9 @@
   a {
     color: var(--link-color);
   }
- 
+ .card-card {
+  background-color: "red"
+ }
   
   /* Custom Dark Mode Toggle Element */
   

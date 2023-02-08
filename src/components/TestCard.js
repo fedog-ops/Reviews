@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -12,12 +12,11 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import TweakText from "../utils/TweakText";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Text } from "react-native";
+
 import Comments from "./Comments";
 
 const ExpandMore = styled((props) => {
@@ -40,18 +39,14 @@ const TestCard = ({data}) => {
  
  const [expanded, setExpanded] = useState(false);
    
-    
-    const handleLikes = () => {
-        console.log('hello')
-        // setLikeCount(x=> x + 1)
-    }
+   
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
   
     return (
-      <Card style={{backgroundColor:"#292929"}}>
+      <Card >
         <CardHeader
                   
           title={data.title}
@@ -64,10 +59,10 @@ const TestCard = ({data}) => {
           alt="Paella dish"
         />
         <CardContent>
-          <Typography color="#eeeeee">{data.category}</Typography><br/>
+          <Typography >{(data.category)? TweakText(data.category) : 'Loading ...'}</Typography><br/>
           <Typography
             variant="body2"
-            color="#eeeeee"
+            
            >
             {data.review_body}
             

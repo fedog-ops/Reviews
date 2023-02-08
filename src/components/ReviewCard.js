@@ -9,18 +9,18 @@ import {
   CardActions,
   CardContent,
 
-  Avatar,
   IconButton,
-  Typography,
+
 
 } from "@mui/material";
 
-import { red } from "@mui/material/colors";
 
 import ForumIcon from '@mui/icons-material/Forum';
 import { Text } from "react-native";
+//styles
 import "../DarkMode.css";
-
+//utils
+import TweakText from "../utils/TweakText";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
 
@@ -33,30 +33,47 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+
 export default function ReviewCard({ data, currentUser }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded] = React.useState(false);
   const [text, setText] = useState(data.review_body.slice(0, 125));
   const [readMore, setReadMore] = useState(false);
 
+/* <IconButton aria-label="like">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton> */
   return (
-    <Card style={{backgroundColor:"#292929"}}>
+    //CARD BACKGROUND
+    <Card>
+  
       <CardHeader
        
-        sx={{height: 50, }}
+        sx={{height: 50}}
         title={data.title}
+        titleTypographyProps={{
+          fontSize: 20
+        }}
         subheader={data.created_at.slice(0,10)}
-      />
+      /> 
+      
+      
       <CardMedia
         component="img"
         height="194"
         image={data.review_img_url}
-        alt="Paella dish"
+        alt="Category Pic"
       />
+
+
+
       <CardContent>
-        <Typography color="#eee">{data.category}</Typography><br/>
+        <Text >{(data.category)? TweakText(data.category) : 'Loading ...'}<br/></Text>
         <Text
           variant="body2"
-          color="#eee"
+        
           onPress={() => {
             if (!readMore) {
               setText(data.review_body);
@@ -68,7 +85,7 @@ export default function ReviewCard({ data, currentUser }) {
           }}
         >
           {text} {!readMore && "... "}
-          <Text variant="body4" color="text.secondary">
+          <Text variant="body4" color="#eee">
             {(readMore) ? "Show Less" : "  read more"}
           </Text>
         </Text>
@@ -94,9 +111,3 @@ export default function ReviewCard({ data, currentUser }) {
 
 
 
- {/* <IconButton aria-label="like">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}

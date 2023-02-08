@@ -5,6 +5,7 @@ import { Stack, Typography, Grid } from "@mui/material";
 import ReviewCard from "../components/ReviewCard";
 import Filter from "../components/Filter";
 
+
 const Home = ({ slug }) => {
   const [reviews, setReviews] = useState([]);
   const [sort_by, setSort_by] = useState("created_at");
@@ -20,7 +21,7 @@ const Home = ({ slug }) => {
   ];
   const sorts = [
     ["category", "Category"],
-    ["created_at", "Created at"],
+    ["created_at", "Date"],
     ["designer", "Designer"],
     ["owner", "Owner"],
     ["votes", "Votes"],
@@ -32,7 +33,7 @@ const Home = ({ slug }) => {
         setReviews(data);
       })
       .catch((error) => {
-        console.log(error);
+   
         setReviews(null);
       });
   }, [slug, order_by, sort_by]);
@@ -47,15 +48,16 @@ const Home = ({ slug }) => {
 
   return (
     <>
-      <Stack direction="row-reverse">
+      <Stack direction="row" sx={{paddingLeft: 7}}>
         <Filter filter={"order"} data={orders} handleFilters={handleFilters} />
-        <Filter filter={"sort"} data={sorts} handleFilters={handleFilters} />
+        <Filter filter={"sort"} data={sorts} handleFilters={handleFilters} /> 
+        
       </Stack>
 
       <Grid sx={styling.container} container spacing={2}>
         {reviews.map((review) => {
           return (
-            <Grid spacing={1} md={4}  sm={6} xs={12} sx={{paddingTop: 5, paddingLeft:5}}>
+            <Grid spacing={1} md={4} sm={6} xs={12} sx={{paddingTop: 5, paddingLeft:5}}>
               <ReviewCard data={review} key={review.review_id} />
             </Grid>
           );

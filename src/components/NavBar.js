@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { useState } from "react";
 import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import DarkMode from "./DarkMode";
+
 
 const NavBar = ({ callback }) => {
   const navigate =useNavigate()
@@ -38,7 +38,7 @@ const NavBar = ({ callback }) => {
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         Reviews
       </Typography>
-      <DarkMode/>
+
       <Stack
         direction="row"
         justifyContent="space-around"
