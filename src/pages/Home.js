@@ -48,9 +48,9 @@ const Home = ({ slug }) => {
 
   return (
     <>
-      <Stack direction="row" sx={{paddingLeft: 7}}>
-        <Filter filter={"order"} data={orders} handleFilters={handleFilters} />
-        <Filter filter={"sort"} data={sorts} handleFilters={handleFilters} /> 
+      <Stack direction="row-reverse" sx={{paddingRight:7}}>
+        <Filter filter={"Order"} data={orders} handleFilters={handleFilters} />
+        <Filter filter={"Sort"} data={sorts} handleFilters={handleFilters} /> 
        
         
       </Stack>

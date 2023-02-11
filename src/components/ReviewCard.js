@@ -76,7 +76,7 @@ export default function ReviewCard({ data, currentUser }) {
           }}
         >
           {text} {!readMore && "... "}
-          <Typography variant="body4" color="#eee">
+          <Typography variant="body4" >
             {(readMore) ? "Show Less" : "  read more"}
           </Typography>
         </Typography>

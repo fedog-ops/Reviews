@@ -33,19 +33,19 @@ const NavBar = ({ callback, updateTheme, light }) => {
   };
 
   return (
-    <Toolbar>
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+    <Toolbar >
+      {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         Reviews
-      </Typography>
+      </Typography> */}
 
       <Stack
         direction="row"
         justifyContent="space-around"
         spacing={2}
         sx={{
-          gap: { sm: "122px", xs: "40px" },
-          mt: { sm: "32px", xs: "20px" },
-          justifyContent: "none",
+          gap: { sm: 12, xs: 4 },
+          mt: { sm: 12, xs: 3 },
+          justifyContent: "center",
         }}
         px="20px"
       >
