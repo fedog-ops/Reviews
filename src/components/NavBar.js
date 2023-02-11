@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography, Menu, MenuItem, Toolbar } from "@mui/material";
+import { Button, Menu, MenuItem, Toolbar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { useState } from "react";
