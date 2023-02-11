@@ -25,7 +25,7 @@ const [value, setValue] = useState(data[1][0])
         >
        
           {data.map(item => {
-           return (<MenuItem value={item[0]}>{item[1]}</MenuItem>)
+           return (<MenuItem key={item[0]} value={item[0]}>{item[1]}</MenuItem>)
           })} 
           
          
