@@ -32,15 +32,9 @@ const ExpandMore = styled((props) => {
 }))
 
 const SoloReviewCard = ({data}) => {
-  // const [likeCount, setLikeCount] = useState('')
-  // useEffect = () => {
-  //    setLikeCount(parseInt(data.votes))
-  // }
- 
+
  const [expanded, setExpanded] = useState(false);
    
-   
-  
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
@@ -70,12 +64,7 @@ const SoloReviewCard = ({data}) => {
         </CardContent>
         
        <CardActions disableSpacing>
-          {/* <IconButton onClick={handleLikes} aria-label="like" >
-            <FavoriteIcon /><div>{data.votes}</div>
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon /><div>{data.comment_count}</div>
-          </IconButton> */}
+        
   
           <ExpandMore
             expand={expanded}

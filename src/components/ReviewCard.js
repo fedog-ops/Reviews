@@ -8,17 +8,10 @@ import {
   CardMedia,
   CardActions,
   CardContent,
-
   IconButton,
-
-
+  Typography,
 } from "@mui/material";
-
-
 import ForumIcon from '@mui/icons-material/Forum';
-import { Text } from "react-native";
-//styles
-import "../DarkMode.css";
 //utils
 import TweakText from "../utils/TweakText";
 const ExpandMore = styled((props) => {
@@ -35,23 +28,18 @@ const ExpandMore = styled((props) => {
 
 
 export default function ReviewCard({ data, currentUser }) {
-  const [expanded] = React.useState(false);
+  const [expanded] = useState(false);
   const [text, setText] = useState(data.review_body.slice(0, 125));
   const [readMore, setReadMore] = useState(false);
 
-/* <IconButton aria-label="like">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */
+
   return (
     //CARD BACKGROUND
     <Card>
   
       <CardHeader
        
-        sx={{height: 50}}
+        sx={{height: 100}}
         title={data.title}
         titleTypographyProps={{
           fontSize: 20
@@ -70,11 +58,14 @@ export default function ReviewCard({ data, currentUser }) {
 
 
       <CardContent>
-        <Text >{(data.category)? TweakText(data.category) : 'Loading ...'}<br/></Text>
-        <Text
+
+
+        <Typography >{(data.category)? TweakText(data.category) : 'Loading ...'}<br/></Typography>
+
+        <Typography
           variant="body2"
         
-          onPress={() => {
+          onClick={() => {
             if (!readMore) {
               setText(data.review_body);
               setReadMore(true);
@@ -85,10 +76,12 @@ export default function ReviewCard({ data, currentUser }) {
           }}
         >
           {text} {!readMore && "... "}
-          <Text variant="body4" color="#eee">
+          <Typography variant="body4" color="#eee">
             {(readMore) ? "Show Less" : "  read more"}
-          </Text>
-        </Text>
+          </Typography>
+        </Typography>
+
+
       </CardContent>
      <CardActions disableSpacing>
        

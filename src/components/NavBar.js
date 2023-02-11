@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { useState } from "react";
 import KeyBoardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { DarkMode, LightMode } from "@mui/icons-material";
 
-
-const NavBar = ({ callback }) => {
+const NavBar = ({ callback, updateTheme, light }) => {
   const navigate =useNavigate()
   const catList = [
     { i: "", o: "All" },
@@ -29,10 +29,9 @@ const NavBar = ({ callback }) => {
     if (myValue !== undefined) {
       callback(myValue);
       navigate('/')
-      ///reset page to home without link
     }
   };
-  const handleUser = () => {};
+
   return (
     <Toolbar>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -50,9 +49,8 @@ const NavBar = ({ callback }) => {
         }}
         px="20px"
       >
-        <Link to="/">
-          <Button> Home </Button>
-        </Link>
+        <Button onClick={updateTheme}>{light? <DarkMode/>:<LightMode/> }</Button>
+   
 
         <Button
           id="cat-button"
@@ -94,7 +92,7 @@ const NavBar = ({ callback }) => {
           })}
         </Menu>
         <Link to="login">
-          <Button onClick={handleUser}>Users</Button>
+          <Button >Users</Button>
         </Link>
       </Stack>
     </Toolbar>

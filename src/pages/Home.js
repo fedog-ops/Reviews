@@ -5,11 +5,11 @@ import { Stack, Typography, Grid } from "@mui/material";
 import ReviewCard from "../components/ReviewCard";
 import Filter from "../components/Filter";
 
-
 const Home = ({ slug }) => {
   const [reviews, setReviews] = useState([]);
   const [sort_by, setSort_by] = useState("created_at");
   const [order_by, setOrder_by] = useState("DESC");
+
 
   const handleFilters = (input, filter) => {
     if (filter === "sort") setSort_by(input);
@@ -51,6 +51,7 @@ const Home = ({ slug }) => {
       <Stack direction="row" sx={{paddingLeft: 7}}>
         <Filter filter={"order"} data={orders} handleFilters={handleFilters} />
         <Filter filter={"sort"} data={sorts} handleFilters={handleFilters} /> 
+       
         
       </Stack>
 
