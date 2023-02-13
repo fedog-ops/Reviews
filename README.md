@@ -1,5 +1,5 @@
 ### `Introduciton`
-This project focuses on Industry-led curriculum, where the author learned various programming languages and tools such as JavaScript, HTML, CSS, Git, Github, SQL, React, Jest, and Agile Methodologies.
+This project is a CRUD application, where the author learned various programming languages and tools such as JavaScript, HTML, CSS, Git, Github, SQL, React, Jest, and Agile Methodologies.
 
 ### `Website`
 
